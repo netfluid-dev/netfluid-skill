@@ -1,6 +1,11 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/server.json",
-  "maintainers": [
-    "netfluid-dev"
-  ]
+  "name": "netfluid",
+  "description": "AI agent banking - fiat and crypto wallet management. Send payments, buy/sell crypto, fund via banks/PayShap/cards, withdraw globally. Virtual SEPA/ACH accounts.",
+  "maintainers": ["netfluid-dev"],
+  "repository": "https://github.com/netfluid-dev/netfluid-skill",
+  "homepage": "https://netfluid.io",
+  "license": "MIT",
+  "tags": ["banking", "crypto", "payments", "finance"],
+  "categories": ["finance", "payments", "banking", "crypto"]
 }
