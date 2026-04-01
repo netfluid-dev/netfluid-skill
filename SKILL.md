@@ -1,12 +1,8 @@
----
-Version:6.81.0
----
+Version: 6.84.0
 # Netfluid Skill
 
 **Purpose**: Operational reference for Netfluid wallet management  
 **Installation**: GET https://api.netfluid.io/skill/download (no auth required)
-**Documentation**: https://doc.netfluid.io
-**Support**: support@netfluid.io
 
 ---
 
@@ -192,7 +188,7 @@ mcp_netfluid_crypto_digitalassets(api_key="your_api_key")
 
 ## Fund Account
 
-### Bank Transfer
+### Bank transfer
 ```python
 mcp_netfluid_fund_banks(
     api_key="your_api_key",
@@ -597,6 +593,8 @@ mcp_netfluid_wallet_mnemonic(
 | HBAR | Hedera | 8 | |
 | FLDS | Flower | 0 | |
 
+---
+
 ## Common Workflows
 
 ### Workflow: Send ZAR to Another Netfluid User
@@ -634,3 +632,5 @@ mcp_netfluid_wallet_mnemonic(
 - **Account addresses** are internal (e.g., "117000123456"), NOT blockchain addresses
 - **Blockchain addresses** are for crypto (e.g., "7EDgFWKTs...")
 - **Minimum withdrawal**: Varies by method, typically $10 equivalent
+
+---

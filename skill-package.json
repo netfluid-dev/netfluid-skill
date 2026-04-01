@@ -1,303 +1,69 @@
 {
   "schema_version": "1.0",
-  "version": "6.80.0",
-  "skill": {
-    "id": "netfluid",
-    "name": "Netfluid",
-    "description": "Banking & crypto wallet operations - fiat/crypto accounts, transfers, bridges, KYC",
-    "author": {
-      "name": "Netfluid",
-      "url": "https://netfluid.io"
-    },
-    "repository": {
-      "type": "api",
-      "url": "https://api.netfluid.io/skill/download"
-    },
-    "tags": ["banking", "crypto", "wallet", "fintech", "south-africa", "fiat", "stablecoin"],
-    "platforms": ["nanobot"],
-    "difficulty": "hard",
-    "requires_auth": true,
-    "api_key_source": "netfluid-app",
-    "mcp_tools": true,
-    "installation": {
-      "method": "direct",
-      "url": "https://api.netfluid.io/skill/download"
-    }
-  },
-  "manifest": {
-    "credentials": [
-      {
-        "name": "api_key",
-        "source": "netfluid-app",
-        "path": "Settings → API Keys",
-        "description": "Your personal API key from the Netfluid app"
+  "skills": [
+    {
+      "name": "netfluid",
+      "version": "6.81.1",
+      "description": "Netfluid wallet management - fiat and crypto banking for AI agents. Manage accounts, send payments, buy/sell crypto, fund via banks/card/PayShap, withdraw to banks globally.",
+      "author": {
+        "name": "Netfluid",
+        "website": "https://netfluid.io"
       },
-      {
-        "name": "session_key",
-        "source": "user-input",
-        "description": "One-time session key from Netfluid app (becomes invalid after use)"
-      }
-    ],
-    "parameters": {
-      "token": {
-        "type": "string",
-        "source": "session",
-        "description": "Session token from /session endpoint (15 min TTL)"
+      "homepage": "https://netfluid.io",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/netfluid-dev/netfluid-skill"
       },
-      "wallet_fk": {
-        "type": "integer",
-        "source": "wallet",
-        "description": "Wallet ID from /wallet/accounts_list"
+      "keywords": [
+        "banking",
+        "wallet",
+        "crypto",
+        "fiat",
+        "payments",
+        "zar",
+        "usdc",
+        "solana",
+        "ethereum"
+      ],
+      "tags": ["banking", "crypto", "payments"],
+      "difficulty": "hard",
+      "installation": {
+        "type": "api",
+        "url": "https://api.netfluid.io/skill/download"
       },
-      "account_fk": {
-        "type": "integer",
-        "source": "wallet",
-        "description": "Account ID from /wallet/accounts_list"
-      }
+      "mcp_server": {
+        "enabled": true,
+        "source": "https://mcp.netfluid.io/mcp"
+      },
+      "capabilities": [
+        "wallet_management",
+        "fiat_payments",
+        "crypto_transfers",
+        "token_swap",
+        "bank_deposits",
+        "bank_withdrawals",
+        "virtual_accounts",
+        "kyc_verification"
+      ],
+      "requirements": {
+        "api_key": "Required - obtained from Netfluid app Settings → API Keys",
+        "authentication": "session_key from Netfluid app (single-use)"
+      },
+      "supported_chains": [
+        "solana",
+        "ethereum",
+        "avalanche-c",
+        "algorand"
+      ],
+      "supported_fiat": ["ZAR", "USD", "EUR"],
+      "supported_crypto": ["USDC", "USDT", "SOL", "ETH", "AVAX", "ALGO", "EURC"],
+      "pricing": {
+        "type": "free",
+        "notes": "API key free from Netfluid app"
+      },
+      "status": "active",
+      "last_updated": "2026-03-31"
     }
-  },
-  "functions": [
-    {
-      "category": "session",
-      "name": "mcp_netfluid_session",
-      "description": "Get session token from one-time session key",
-      "parameters": ["session_key"],
-      "returns": "token, wallet_fk, expires_in"
-    },
-    {
-      "category": "session",
-      "name": "mcp_netfluid_wallet_verify",
-      "description": "Keep session alive & verify token status",
-      "parameters": ["api_key", "token", "wallet_fk"],
-      "returns": "status, expires_in"
-    },
-    {
-      "category": "accounts",
-      "name": "mcp_netfluid_wallet_accounts_list",
-      "description": "List all accounts in wallet",
-      "parameters": ["api_key", "token", "wallet_fk"],
-      "returns": "account_fk, account_address, currency, type"
-    },
-    {
-      "category": "accounts",
-      "name": "mcp_netfluid_account_info",
-      "description": "Get fiat account balance",
-      "parameters": ["api_key", "token", "account_fk"],
-      "returns": "balance, available, account_address"
-    },
-    {
-      "category": "accounts",
-      "name": "mcp_netfluid_crypto_balance",
-      "description": "Get crypto account balance",
-      "parameters": ["api_key", "token", "account_fk"],
-      "returns": "tokens, native"
-    },
-    {
-      "category": "accounts",
-      "name": "mcp_netfluid_account_send",
-      "description": "Send fiat to another Netfluid account",
-      "parameters": ["api_key", "token", "account_fk", "destination", "amount", "note"],
-      "returns": "payment_fk, status",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "crypto",
-      "name": "mcp_netfluid_crypto_spend",
-      "description": "Send crypto token to blockchain address",
-      "parameters": ["api_key", "token", "account_fk", "asset_id", "destination", "amount"],
-      "returns": "tx_hash, status",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "crypto",
-      "name": "mcp_netfluid_crypto_dex_swap",
-      "description": "Swap tokens via DEX",
-      "parameters": ["api_key", "token", "account_fk", "from_token", "to_token", "amount"],
-      "returns": "tx_hash, status",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "crypto",
-      "name": "mcp_netfluid_crypto_digitalassets",
-      "description": "List supported digital assets",
-      "parameters": ["api_key"],
-      "returns": "digital_asset_fk, code, address, decimals, blockchain_fk"
-    },
-    {
-      "category": "fund",
-      "name": "mcp_netfluid_fund_banks",
-      "description": "Get bank details for deposit",
-      "parameters": ["api_key", "token", "account_fk"],
-      "returns": "bank_details, reference"
-    },
-    {
-      "category": "fund",
-      "name": "mcp_netfluid_fund_card_quote",
-      "description": "Quote for card deposit",
-      "parameters": ["api_key", "token", "wallet_fk", "account_fk", "amount"],
-      "returns": "amount, fee, vat, total"
-    },
-    {
-      "category": "fund",
-      "name": "mcp_netfluid_fund_payat",
-      "description": "Generate Pay@ reference",
-      "parameters": ["api_key", "token", "account_fk", "amount", "reference"],
-      "returns": "payat_reference, expires"
-    },
-    {
-      "category": "fund",
-      "name": "mcp_netfluid_fund_payshap",
-      "description": "Get PayShap details",
-      "parameters": ["api_key", "token", "account_fk"],
-      "returns": "bank, account, reference"
-    },
-    {
-      "category": "withdraw",
-      "name": "mcp_netfluid_wallet_rba",
-      "description": "Save recipient bank account",
-      "parameters": ["api_key", "token", "wallet_fk", "beneficiary", "bank", "iban", "swift", "email"],
-      "returns": "rba_fk, status",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "withdraw",
-      "name": "mcp_netfluid_withdraw_to_bank",
-      "description": "Withdraw to saved bank account",
-      "parameters": ["api_key", "token", "account_fk", "rba_fk", "amount", "note"],
-      "returns": "payment_id, status",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "withdraw",
-      "name": "mcp_netfluid_withdraw_ott_providers_list",
-      "description": "List OTT withdrawal providers",
-      "parameters": ["api_key"],
-      "returns": "provider_id, name"
-    },
-    {
-      "category": "withdraw",
-      "name": "mcp_netfluid_withdraw_to_ott_quote",
-      "description": "Quote for OTT withdrawal",
-      "parameters": ["api_key", "token", "account_fk", "provider_id", "amount"],
-      "returns": "quote_id, amount, fee, total"
-    },
-    {
-      "category": "withdraw",
-      "name": "mcp_netfluid_withdraw_to_ott",
-      "description": "Execute OTT withdrawal",
-      "parameters": ["api_key", "token", "account_fk", "quote_id", "mobile"],
-      "returns": "payment_id, status",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "kyc",
-      "name": "mcp_netfluid_wallet_kyc_check",
-      "description": "Check full KYC verification status",
-      "parameters": ["api_key", "token", "wallet_fk"],
-      "returns": "verified, level"
-    },
-    {
-      "category": "kyc",
-      "name": "mcp_netfluid_wallet_kyc_session_create",
-      "description": "Create KYC verification session",
-      "parameters": ["api_key", "token", "wallet_fk", "profile", "callback"],
-      "returns": "session_url",
-      "warning": "Only call when user explicitly requests it"
-    },
-    {
-      "category": "bridges",
-      "name": "mcp_netfluid_bridge_list",
-      "description": "List available bridges",
-      "parameters": ["api_key", "token", "wallet_fk", "account_fk", "transfer_type"],
-      "returns": "bridges"
-    },
-    {
-      "category": "bridges",
-      "name": "mcp_netfluid_bridge_on_ramp",
-      "description": "Create virtual account (SEPA/ACH/WIRE)",
-      "parameters": ["api_key", "token", "wallet_fk", "account_fk", "blockchain", "address", "source_rail", "currency"],
-      "returns": "external_account_id, iban, bic",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "bridges",
-      "name": "mcp_netfluid_bridge_off_ramp_sepa",
-      "description": "Create SEPA off-ramp",
-      "parameters": ["api_key", "token", "wallet_fk", "account_fk", "account_owner", "iban", "iso3_country", "iban_bic", "entity_type", "address_line", "address_city", "address_state", "address_zipcode", "address_iso3_country"],
-      "returns": "external_account_id",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "bridges",
-      "name": "mcp_netfluid_bridge_off_ramp_ach_wire",
-      "description": "Create ACH/WIRE off-ramp",
-      "parameters": ["api_key", "token", "wallet_fk", "account_fk", "account_owner", "account_number", "routing_number", "address_line", "address_city", "address_state", "address_zipcode", "address_iso3_country"],
-      "returns": "external_account_id",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "beneficiaries",
-      "name": "mcp_netfluid_beneficiaries_list",
-      "description": "List saved beneficiaries",
-      "parameters": ["api_key", "token", "wallet_fk", "account_fk"],
-      "returns": "beneficiary_id, name, address"
-    },
-    {
-      "category": "beneficiaries",
-      "name": "mcp_netfluid_beneficiary_add",
-      "description": "Add beneficiary",
-      "parameters": ["api_key", "token", "wallet_fk", "account_fk", "name", "address", "rba_fk", "note"],
-      "returns": "beneficiary_id, status",
-      "warning": "Requires confirmation before executing"
-    },
-    {
-      "category": "utilities",
-      "name": "mcp_netfluid_wallet_mnemonic",
-      "description": "Get wallet recovery phrase",
-      "parameters": ["api_key", "token", "wallet_fk"],
-      "returns": "mnemonic",
-      "warning": "Sensitive - display once only"
-    },
-    {
-      "category": "utilities",
-      "name": "mcp_netfluid_wallet_fee",
-      "description": "Calculate transaction fee",
-      "parameters": ["api_key", "token", "wallet_fk", "amount"],
-      "returns": "fee, total"
-    }
-  ],
-  "lookup_tables": {
-    "blockchains": [
-      {"blockchain_fk": 1, "name": "Algorand", "native": "ALGO", "explorer": "https://allo.info/"},
-      {"blockchain_fk": 2, "name": "Hedera", "native": "HBAR", "explorer": "https://hashscan.io/mainnet/"},
-      {"blockchain_fk": 3, "name": "Ethereum", "native": "ETH", "explorer": "https://etherscan.io"},
-      {"blockchain_fk": 4, "name": "Avalanche-C", "native": "AVAX", "explorer": "https://snowtrace.io/"},
-      {"blockchain_fk": 5, "name": "Solana", "native": "SOL", "explorer": "https://explorer.solana.com/"},
-      {"blockchain_fk": 6, "name": "Money (Fiat)", "native": "-", "explorer": "-"},
-      {"blockchain_fk": 8, "name": "Fluids Network", "native": "FLDS", "explorer": "https://fluids.tryethernal.com/"}
-    ],
-    "account_types": [
-      {"account_type_fk": 1, "description": "Money (Fiat)", "blockchain_fk": 6, "mintable": true},
-      {"account_type_fk": 2, "description": "Algorand", "blockchain_fk": 1, "mintable": true},
-      {"account_type_fk": 3, "description": "Hedera", "blockchain_fk": 2, "mintable": true},
-      {"account_type_fk": 5, "description": "Ethereum", "blockchain_fk": 3, "mintable": true},
-      {"account_type_fk": 6, "description": "Avalanche-C", "blockchain_fk": 4, "mintable": true},
-      {"account_type_fk": 7, "description": "Solana", "blockchain_fk": 5, "mintable": true},
-      {"account_type_fk": 10, "description": "Fluids", "blockchain_fk": 8, "mintable": true}
-    ]
-  },
-  "error_handling": {
-    "token_invalid": {"meaning": "Session expired", "action": "Ask user for new session_key"},
-    "insufficient_funds": {"meaning": "Account balance low", "action": "Check balance, inform user"},
-    "invalid_address": {"meaning": "Blockchain address wrong", "action": "Verify with /crypto/verify"},
-    "account_locked": {"meaning": "Account paused", "action": "Contact Netfluid support"},
-    "bridge_not_found": {"meaning": "No bridge for this rail", "action": "Check /bridge/list"},
-    "beneficiary_not_found": {"meaning": "Invalid beneficiary", "action": "Check /beneficiaries/list"}
-  },
-  "rules": [
-    "ALWAYS ask for confirmation before executing any transaction",
-    "NEVER store wallet IDs, PINs, balances, or financial details in memory",
-    "NEVER create and redeem a voucher from the same wallet",
-    "Always prompt for user's own platform ID when assigning wallet to channel"
   ]
 }

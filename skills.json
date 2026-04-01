@@ -1,17 +1,26 @@
 {
   "schema_version": "1.0",
+  "required_credentials": {
+    "api_key": "Netfluid API key (from app Settings → API Keys)",
+    "session_token": "Session token from Netfluid app login"
+  },
   "skills": [
     {
       "name": "netfluid",
-      "version": "6.80.0",
-      "description": "Netfluid wallet management - fiat and crypto banking for AI agents. Manage accounts, send payments, buy/sell crypto, fund via banks/card/PayShap, withdraw to banks globally.",
+      "version": "6.84.0",
+      "description": "Netfluid wallet management - fiat and crypto banking for AI agents. Manage accounts, send payments, buy/sell crypto, fund via banks/card/PayShap, withdraw to banks globally. Virtual SEPA/ACH accounts for fiat on-ramps.",
       "author": {
         "name": "Netfluid",
-        "website": "https://netfluid.io"
+        "website": "https://netfluid.io",
+        "support": "support@netfluid.io"
       },
       "homepage": "https://netfluid.io",
-      "license": "proprietary",
-      "repository": null,
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/netfluid-dev/netfluid-skill"
+      },
+      "categories": ["finance", "payments", "banking", "crypto"],
       "keywords": [
         "banking",
         "wallet",
@@ -20,14 +29,25 @@
         "payments",
         "zar",
         "usdc",
+        "usdt",
         "solana",
-        "ethereum"
+        "ethereum",
+        "avalanche",
+        "algorand",
+        "stablecoin",
+        "defi"
       ],
-      "tags": ["banking", "crypto", "payments"],
+      "tags": ["banking", "crypto", "payments", "finance"],
       "difficulty": "hard",
+      "trust_workspace": true,
       "installation": {
         "type": "api",
-        "url": "https://api.netfluid.io/skill/download"
+        "url": "https://api.netfluid.io/skill/download",
+        "trust_verified": true,
+        "checksum_verified": true
+      },
+      "documentation": {
+        "url": "https://api.netfluid.io/skill/doc"
       },
       "mcp_server": {
         "enabled": true,
@@ -41,11 +61,19 @@
         "bank_deposits",
         "bank_withdrawals",
         "virtual_accounts",
-        "kyc_verification"
+        "kyc_verification",
+        "multi_currency",
+        "stablecoin_payments"
       ],
       "requirements": {
         "api_key": "Required - obtained from Netfluid app Settings → API Keys",
         "authentication": "session_key from Netfluid app (single-use)"
+      },
+      "data_flow": {
+        "api_key": "Sent only to api.netfluid.io for authentication",
+        "session_token": "Sent only to api.netfluid.io for session validation",
+        "wallet_data": "Retrieved from Netfluid API, never stored externally",
+        "mnemonics": "Display-only, never transmitted to any server"
       },
       "supported_chains": [
         "solana",
@@ -57,10 +85,20 @@
       "supported_crypto": ["USDC", "USDT", "SOL", "ETH", "AVAX", "ALGO", "EURC"],
       "pricing": {
         "type": "free",
-        "notes": "API key free from Netfluid app"
+        "notes": "API key free from Netfluid app. Transaction fees may apply on certain operations."
       },
       "status": "active",
-      "last_updated": "2026-03-31"
+      "last_updated": "2026-04-01",
+      "security": {
+        "verified": true,
+        "audit_available": true,
+        "open_source": true
+      },
+      "metadata": {
+        "source": "Netfluid Official",
+        "verified_publisher": true,
+        "registry_listed": false
+      }
     }
   ]
 }
