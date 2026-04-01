@@ -34,17 +34,7 @@ GET https://api.netfluid.io/skill/download
 # The skill files will be installed to your agent's skills directory
 ```
 
-### Option 2: ClawHub (Recommended for Discovery)
-
-```bash
-# Search for the Netfluid skill
-npx clawhub@latest search netfluid
-
-# Install the skill
-npx clawhub@latest install netfluid
-```
-
-### Option 3: Manual Installation
+### Option 2: Manual Installation
 
 ```bash
 # Clone or download the skill files
