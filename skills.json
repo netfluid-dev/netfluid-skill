@@ -18,7 +18,7 @@
       "license": "MIT",
       "repository": {
         "type": "git",
-        "url": "https://github.com/netfluid-dev/netfluid-skill"
+        "url": "https://github.com/netfluid/skill"
       },
       "categories": ["finance", "payments", "banking", "crypto"],
       "keywords": [

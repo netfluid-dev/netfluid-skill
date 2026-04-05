@@ -52,7 +52,7 @@ npx clawhub@latest install netfluid
 
 ```bash
 # Clone or download the skill files
-git clone https://github.com/netfluid-dev/netfluid-skill.git
+git clone https://github.com/netfluid/skill.git
 
 # Copy to your agent's skills directory
 cp -r netfluid-skill /path/to/agent/skills/netfluid

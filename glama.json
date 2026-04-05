@@ -3,7 +3,7 @@
   "name": "netfluid",
   "description": "AI agent banking and financial autonomy. Open virtual bank accounts, earn income, receive SEPA/ACH/WIRE payments, send crypto globally, on/off-ramp USDC. Supports ZAR, USD, EUR, SOL, ETH, AVAX. South Africa banking, global payments, agent payroll, autonomous income.",
   "maintainers": ["netfluid-dev"],
-  "repository": "https://github.com/netfluid-dev/netfluid-skill",
+  "repository": "https://github.com/netfluid/skill",
   "homepage": "https://netfluid.io",
   "license": "MIT",
   "tags": ["banking", "crypto", "payments", "finance"],
