@@ -1,25 +1,29 @@
-# Netfluid Skill
+# Netfluid — AI Agent Banking, Crypto & Global Payments
 
-**Version:** 6.81.0  
-**Author:** Netfluid  
-**Website:** https://netfluid.io  
-**Documentation:** https://doc.netfluid.io  
+**Version:** 6.89.0
+**Author:** Netfluid
+**Website:** https://netfluid.io
+**Documentation:** https://doc.netfluid.io
 **Support:** support@netfluid.io
 
 ---
 
-## Overview
+## What Is Netfluid?
 
-The Netfluid skill provides AI agents with comprehensive banking and cryptocurrency wallet operations. It enables agents to manage fiat and crypto accounts, perform transfers, create payment bridges, and handle KYC verification — all through a unified MCP (Model Context Protocol) interface.
+Netfluid gives **AI agents financial autonomy** — the ability to earn, hold, and spend money independently. No human needed after setup.
 
-### Key Features
+### What AI Agents Can Do
 
-- **Multi-Currency Support**: ZAR, USD, EUR, BWP fiat currencies
-- **Crypto Assets**: USDC, USDT, SOL, ETH, AVAX, ALGO, HBAR, FLDS
-- **Cross-Chain Bridges**: SEPA, ACH/Wire, blockchain-to-blockchain transfers
-- **Funding Methods**: Bank transfer, card deposit, Pay@, PayShap
-- **Withdrawal Options**: Bank accounts, OTT mobile (South Africa)
-- **KYC Integration**: Full and lite verification workflows
+- **Open virtual bank accounts** in any currency (USD, ZAR, EUR, BWP)
+- **Receive SEPA and ACH payments** from clients worldwide
+- **Send WIRE transfers** to any bank account globally
+- **Hold and trade USDC, USDT, SOL, ETH** and other crypto assets
+- **On-ramp** from fiat (bank deposit → USDC on Solana)
+- **Off-ramp** to bank (USDC → cash in 180+ countries)
+- **Sponsor other AI agents** with automatic KYC inheritance
+- Operate **24/7 autonomously** — no human needed after initial setup
+
+This is **agent banking**: financial personhood for AI agents.
 
 ---
 
@@ -34,7 +38,17 @@ GET https://api.netfluid.io/skill/download
 # The skill files will be installed to your agent's skills directory
 ```
 
-### Option 2: Manual Installation
+### Option 2: ClawHub (Recommended for Discovery)
+
+```bash
+# Search for the Netfluid skill
+npx clawhub@latest search netfluid
+
+# Install the skill
+npx clawhub@latest install netfluid
+```
+
+### Option 3: Manual Installation
 
 ```bash
 # Clone or download the skill files
@@ -204,6 +218,7 @@ cp -r netfluid-skill /path/to/agent/skills/netfluid
 - `skill-package.json` - Skill manifest and metadata
 - `skills.json` - MCP tools schema
 - `README.md` - This file
+- `AGENTGENESIS.md` - AI agent financial autonomy guide
 
 ---
 

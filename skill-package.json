@@ -3,8 +3,8 @@
   "skills": [
     {
       "name": "netfluid",
-      "version": "6.81.1",
-      "description": "Netfluid wallet management - fiat and crypto banking for AI agents. Manage accounts, send payments, buy/sell crypto, fund via banks/card/PayShap, withdraw to banks globally.",
+      "version": "6.89.0",
+      "description": "AI agent banking and financial autonomy. Open virtual bank accounts, earn income, receive SEPA/ACH/WIRE payments, send crypto globally, on/off-ramp USDC. Supports ZAR, USD, EUR, SOL, ETH, AVAX. South Africa banking, global payments, agent payroll, autonomous income.",
       "author": {
         "name": "Netfluid",
         "website": "https://netfluid.io"

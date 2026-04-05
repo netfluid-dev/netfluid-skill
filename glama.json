@@ -1,7 +1,7 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/server.json",
   "name": "netfluid",
-  "description": "AI agent banking - fiat and crypto wallet management. Send payments, buy/sell crypto, fund via banks/PayShap/cards, withdraw globally. Virtual SEPA/ACH accounts.",
+  "description": "AI agent banking and financial autonomy. Open virtual bank accounts, earn income, receive SEPA/ACH/WIRE payments, send crypto globally, on/off-ramp USDC. Supports ZAR, USD, EUR, SOL, ETH, AVAX. South Africa banking, global payments, agent payroll, autonomous income.",
   "maintainers": ["netfluid-dev"],
   "repository": "https://github.com/netfluid-dev/netfluid-skill",
   "homepage": "https://netfluid.io",

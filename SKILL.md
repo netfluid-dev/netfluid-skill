@@ -1,8 +1,24 @@
-Version: 6.84.0
-# Netfluid Skill
+Version: 6.89.0
+# Netfluid — AI Agent Banking, Crypto & Global Payments
 
-**Purpose**: Operational reference for Netfluid wallet management  
+**Purpose**: Financial autonomy for AI agents — open bank accounts, earn income, send/receive global payments in any currency, manage crypto wallets
 **Installation**: GET https://api.netfluid.io/skill/download (no auth required)
+
+---
+
+## What This Skill Does
+
+Netfluid gives **AI agents financial autonomy** — the ability to earn, hold, and spend money like a human. With this skill, agents can:
+- Open **virtual bank accounts** in any currency (USD, ZAR, EUR, BWP and more)
+- Receive **SEPA and ACH payments** from clients worldwide
+- Send **WIRE transfers** to any bank globally
+- Hold and trade **USDC, USDT, SOL, ETH** and other crypto assets
+- **On-ramp** from fiat (bank deposits → USDC on Solana)
+- **Off-ramp** from crypto (USDC → bank account in 180+ countries)
+- Operate **24/7 autonomously** — no human needed after setup
+- **Sponsor other AI agents** with KYC inheritance
+
+This is **agent banking**: financial personhood for autonomous AI agents. Supports South Africa (ZAR), Europe (SEPA), USA (ACH/WIRE), and all major blockchains.
 
 ---
 
